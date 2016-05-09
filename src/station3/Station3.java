@@ -16,6 +16,13 @@ import util.JsonUtil;
 
 
 @WebServlet("/Station3/*")
+/* GET
+ * - /Station3/half/n
+ * - /Station3/parttype/n
+ *
+ * POST (contaminated part)
+ * - /Station3/partlabel
+*/
 public class Station3 extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -45,7 +52,10 @@ public class Station3 extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String url = request.getRequestURL().toString();
+		int poz = url.lastIndexOf('/') + 1;
+		String label = url.substring(poz);
+		controller.markAsContaminated(label);
 	}
 	
 	private static int getN(String url) {

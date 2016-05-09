@@ -37,4 +37,12 @@ public class Station3Controller {
 		}
 		return null;
 	}
+
+	public void markAsContaminated(String label) {
+		try {
+			server.markAsContaminated(label);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}	
+	}
 }

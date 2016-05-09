@@ -29,4 +29,10 @@ public class Station2 implements Station2Interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void markAsContaminated(String label) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }
