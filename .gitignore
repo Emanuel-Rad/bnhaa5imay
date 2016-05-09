@@ -9,3 +9,5 @@
 !WebContent/*/
 !WebContent/*/*
 !WebContent/*/*/
+!ServerConfig/
+!ServerConfig/*
