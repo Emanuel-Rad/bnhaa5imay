@@ -1,21 +1,22 @@
 package model;
 
-public class Part {
+import java.io.Serializable;
+
+public class Part implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	public static final String LEG = "leg";
 	public static final String HALFBODY = "halfbody";
 	
+	private String label;	
 	private String type;
 	private int weight;
-	private String label;
 	private boolean isContaminated;
-	private String porkReference;
 	
-	public Part(String porkReference, String type, int weight, String label, boolean isContaminated) {
-		this.porkReference = porkReference;
+	public Part(String label, String type, int weight, boolean isContaminated) {
+		this.label = label;
 		this.type = type;
 		this.weight = weight;
-		this.label = label;
 		this.isContaminated = isContaminated;
 	}
 
@@ -26,20 +27,17 @@ public class Part {
 	public void setContaminated(boolean isContaminated) {
 		this.isContaminated = isContaminated;
 	}
-	
-	public String getPorkReference() {
-		return porkReference;
-	}
 
+
+	public String getLabel() {
+		return label;
+	}
+	
 	public String getType() {
 		return type;
 	}
 
 	public int getWeight() {
 		return weight;
-	}
-
-	public String getLabel() {
-		return label;
 	}
 }

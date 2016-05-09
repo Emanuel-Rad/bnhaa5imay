@@ -38,11 +38,10 @@ public class JsonUtil {
 		for(Part part: p.getParts()) {
 			writer.setIndent("  ");
 			writer.beginObject();
+			writer.name("label").value(part.getLabel());
 			writer.name("type").value(part.getType());
 			writer.name("weight").value(part.getWeight());
-			writer.name("label").value(part.getLabel());
 			writer.name("isContaminated").value(part.isContaminated());
-			writer.name("porkReference").value(part.getPorkReference());
 			writer.endObject();
 		}
 		writer.endArray();
@@ -63,17 +62,16 @@ public class JsonUtil {
 	public static Package readPackage(InputStreamReader reader, JsonObject object) {
 		JsonElement id = object.get("id");
 		JsonElement weight = object.get("weight");
-		Package p = new Package(id.getAsInt(), weight.getAsInt());
+		Package p = new Package(id.getAsInt());
 		JsonParser parser = new JsonParser();
 		JsonArray array = parser.parse(reader).getAsJsonArray();
 		for(JsonElement element: array) {
 			JsonObject obj = element.getAsJsonObject();
-			String porkReference = obj.get("porkReference").getAsString();
+			String label = obj.get("label").getAsString();
 			String type = obj.get("type").getAsString();
 			int weightt = obj.get("weight").getAsInt();
-			String label = obj.get("label").getAsString();
 			boolean isContaminated = obj.get("isContaminated").getAsBoolean();		
-			Part part = new Part(porkReference, type, weightt, label, isContaminated);		
+			Part part = new Part(label, type, weightt, isContaminated);		
 			p.addPart(part);
 		}
 		return p;

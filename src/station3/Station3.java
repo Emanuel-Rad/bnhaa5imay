@@ -44,7 +44,7 @@ public class Station3 extends HttpServlet {
 			int n = getN(url);
 			String type = getType(url);
 			System.out.println("requested " + n + " " + type);
-			packages = controller.getMixPackages(type, n);
+			packages = controller.getPartPackages(type, n);
 		}
 		OutputStream out = response.getOutputStream();
 		JsonUtil.writePackages(out, (Collection<Package>) packages);

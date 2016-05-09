@@ -1,7 +1,10 @@
 package model;
 
-public class Pork {
+import java.io.Serializable;
 
+public class Pork implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String label;
 	private int weight;
 	

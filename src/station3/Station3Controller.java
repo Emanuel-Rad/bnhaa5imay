@@ -29,9 +29,9 @@ public class Station3Controller {
 		return null;
 	}
 
-	public ArrayList<Package> getMixPackages(String type, int n) {
+	public ArrayList<Package> getPartPackages(String type, int n) {
 		try {
-			return server.getMixPackages(type, n);
+			return server.getPartPackages(type, n);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

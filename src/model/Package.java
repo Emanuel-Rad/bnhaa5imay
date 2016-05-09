@@ -1,19 +1,22 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Package {
-	
+public class Package implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int weight;
 	private ArrayList<Part> parts;
 	
-	public Package(int id, int weight) {
+	public Package(int id) {
+		parts = new ArrayList<>();
 		this.id = id;
-		this.weight = weight;
 	}
 	
 	public void addPart(Part part) {
+		weight += part.getWeight();
 		parts.add(part);
 	}
 	
