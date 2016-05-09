@@ -4,10 +4,5 @@
 !src/*/
 !src/*/*
 !src/*/*/
-!WebContent/
-!WebContent/*
-!WebContent/*/
-!WebContent/*/*
-!WebContent/*/*/
-!ServerConfig/
+!WebContent/WEB-INF/lib/*
 !ServerConfig/*
