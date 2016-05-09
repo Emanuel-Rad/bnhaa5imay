@@ -1,5 +1,8 @@
-# Object file
-*.o
-
-# Ada Library Information
-*.ali
+*
+!src/
+!src/*/
+!src/model/
+!src/model/*/
+!src/model/*/*
+!src/util/*/
+!src/util/*/*
