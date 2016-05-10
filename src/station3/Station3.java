@@ -1,8 +1,8 @@
 package station3;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Part;
-import model.Package;
-import util.JsonUtil;
-
 
 @WebServlet("/Station3/*")
 /* GET
@@ -29,25 +26,25 @@ public class Station3 extends HttpServlet {
 	private Station3Controller controller;
 	
     public Station3() {
-    	controller = new Station3Controller();
+    	try {
+			controller = new Station3Controller();
+		} catch (RemoteException | NotBoundException e) {
+			e.printStackTrace();
+		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Package> packages;
+		String packages;
 		String url = request.getRequestURL().toString();
-		if (url.contains("half")) {
-			int n = getN(url);
-			System.out.println("requested " + n + " halves");
+		int n = getN(url);
+		if (url.contains("half"))		
 			packages = controller.getHalfPackages(n);
-		}
 		else {
-			int n = getN(url);
 			String type = getType(url);
-			System.out.println("requested " + n + " " + type);
 			packages = controller.getPartPackages(type, n);
 		}
 		OutputStream out = response.getOutputStream();
-		JsonUtil.writePackages(out, (Collection<Package>) packages);
+		out.write(packages.getBytes());
 		out.flush();
 	}
 

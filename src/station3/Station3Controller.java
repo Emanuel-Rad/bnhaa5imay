@@ -1,48 +1,50 @@
 package station3;
+
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import model.Package;
 import station2.Station2Interface;
 
 public class Station3Controller {
 	private static Station2Interface server;
-	
-	public Station3Controller() {
+	private ObjectMapper json;
+
+	public Station3Controller() throws RemoteException, NotBoundException {
 		Registry registry;
-		try {
-			registry = LocateRegistry.getRegistry();
-			server = (Station2Interface) registry.lookup("Station2");
-		} catch (RemoteException | NotBoundException e) {
-			e.printStackTrace();
-		}		
+		registry = LocateRegistry.getRegistry();
+		server = (Station2Interface) registry.lookup("Station2");
+		json = new ObjectMapper();
 	}
 
-	public ArrayList<Package> getHalfPackages(int n) {
+	public String getHalfPackages(int n) throws RemoteException {
+		ArrayList<Package> packages = server.getHalfPackages(n);
+		return toString(packages);
+	}
+
+	public String getPartPackages(String type, int n) throws RemoteException {
+		ArrayList<Package> packages = server.getPartPackages(type, n); 
+		return toString(packages);
+	}
+
+	public void markAsContaminated(String label) throws RemoteException {
+		server.markAsContaminated(label);
+	}
+	
+	private String toString(ArrayList<Package> packages) {
+		String s = null;
 		try {
-			return server.getHalfPackages(n);
-		} catch (RemoteException e) {
+			s = json.writerWithDefaultPrettyPrinter().writeValueAsString(packages);
+		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return null;
-	}
-
-	public ArrayList<Package> getPartPackages(String type, int n) {
-		try {
-			return server.getPartPackages(type, n);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public void markAsContaminated(String label) {
-		try {
-			server.markAsContaminated(label);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}	
+		return s;
 	}
 }
+
