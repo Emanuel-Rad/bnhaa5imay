@@ -1,9 +1,0 @@
-*
-!src/
-!src/*
-!src/*/
-!src/*/*
-!src/*/*/
-!WebContent/WEB-INF/lib/*
-!ServerConfig/*
-!ExternalJAR/*
