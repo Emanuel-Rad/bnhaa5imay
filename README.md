@@ -1,10 +1,10 @@
 # bnhaa5imay
 
-* ### Add external JARs to
+* ### Add External JARs to
 {this.project}\WebContent\WEB-INF\lib
 
 
-* ### Add server configurations to
+* ### Add Server Configurations to
 {Servers}\Tomcat v8.0 Server at localhost-config
 
 
