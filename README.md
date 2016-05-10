@@ -1,17 +1,12 @@
 # bnhaa5imay
 
-Add external JARs to
-
+* ### Add external JARs to
 {this.project}\WebContent\WEB-INF\lib
 
 
-
-Add server configurations to
-
+* ### Add server configurations to
 {Servers}\Tomcat v8.0 Server at localhost-config
 
 
-
-Add SSL keystore to
-
+* ### Add SSL keystore to
 C:\Users\{your.username}
