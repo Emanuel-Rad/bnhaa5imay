@@ -3,5 +3,7 @@
 !src/*
 !src/*/
 !src/*/*
+!ServerConfig/
 !ServerConfig/*
+!ExternalJAR/
 !ExternalJAR/*
