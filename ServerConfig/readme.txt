@@ -1,0 +1,1 @@
+place .keystore in c:/users/"your username"
