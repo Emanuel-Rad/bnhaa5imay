@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Package;
 import station2.Station2Interface;
 
+// rmi client to main server
+// coverter Model-Json
 public class Station3Controller {
 	private static Station2Interface server;
 	private ObjectMapper json;
@@ -23,28 +25,29 @@ public class Station3Controller {
 		json = new ObjectMapper();
 	}
 
-	public String getHalfPackages(int n) throws RemoteException {
-		ArrayList<Package> packages = server.getHalfPackages(n);
-		return toString(packages);
+	public String getMixPackages(String shop, int n) throws RemoteException {
+		ArrayList<Package> packages = server.getMixPackages(shop, n);
+		String jsonPackages = toJson(packages);
+		return jsonPackages;
 	}
 
-	public String getPartPackages(String type, int n) throws RemoteException {
-		ArrayList<Package> packages = server.getPartPackages(type, n); 
-		return toString(packages);
+	public String getPartPackages(String shop, char type, int n) throws RemoteException {
+		ArrayList<Package> packages = server.getPartPackages(shop, type, n); 
+		String jsonPackages = toJson(packages);
+		return jsonPackages;
 	}
 
 	public void markAsContaminated(String label) throws RemoteException {
 		server.markAsContaminated(label);
 	}
 	
-	private String toString(ArrayList<Package> packages) {
-		String s = null;
+	private String toJson(ArrayList<Package> packages) {
 		try {
-			s = json.writerWithDefaultPrettyPrinter().writeValueAsString(packages);
+			return json.writerWithDefaultPrettyPrinter().writeValueAsString(packages);			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return s;
+		return null;
 	}
 }
 

@@ -5,19 +5,18 @@ import java.io.Serializable;
 public class Part implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	public static final String LEG = "leg";
-	public static final String HALFBODY = "halfbody";
+	public static final String MIX = "MIX";
+	public static final String LEG = "LEG";
+	public static final String HALFBODY = "HALFBODY";
 	
-	private String label;	
-	private String type;
+	private String label;
 	private int weight;
 	private boolean isContaminated;
 	
-	public Part(String label, String type, int weight, boolean isContaminated) {
+	public Part(String label, int weight) {
 		this.label = label;
-		this.type = type;
 		this.weight = weight;
-		this.isContaminated = isContaminated;
+		this.isContaminated = false;
 	}
 
 	public boolean isContaminated() {
@@ -31,10 +30,6 @@ public class Part implements Serializable {
 
 	public String getLabel() {
 		return label;
-	}
-	
-	public String getType() {
-		return type;
 	}
 
 	public int getWeight() {

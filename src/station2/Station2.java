@@ -19,7 +19,6 @@ public class Station2 implements Station2Interface {
 		Station2Interface stub = (Station2Interface) UnicastRemoteObject.exportObject(server, PORT);
 		LocateRegistry.createRegistry(1099);
 		LocateRegistry.getRegistry(1099).rebind("Station2", stub);
-		System.out.println("Server started");
 		server.init();
 	}
 	private void init() {
@@ -27,18 +26,18 @@ public class Station2 implements Station2Interface {
 		ph2 = new Package(1001);
 		pp1 = new Package(1002);
 		pp2 = new Package(1003);
-		Part part1 = new Part("P1234L1", Part.LEG, 100,  false);//
-		Part part2 = new Part("P1234L2", Part.LEG, 101,  false);//
-		Part part3 = new Part("P1234L3", Part.LEG, 102,  false); //
-		Part part4 = new Part("P1234L4", Part.LEG, 103,  false); //
-		Part part5 = new Part("P9874L1", Part.LEG, 104,  true); //
-		Part part6 = new Part("P9874L2", Part.LEG, 104,  true); //
-		Part part7 = new Part("P9874L3", Part.LEG, 104,  true); //
-		Part part8 = new Part("P9874L4", Part.LEG, 104,  true); //
-		Part part9 = new Part("P1234B1", Part.HALFBODY, 105, false); //
-		Part part10 = new Part("P1234B2", Part.HALFBODY, 106, false);//
-		Part part11 = new Part("P9874B1", Part.HALFBODY, 107, true); //
-		Part part12 = new Part("P9874B2", Part.HALFBODY, 108, true); //
+		Part part1 = new Part("P1234L1", 100);//
+		Part part2 = new Part("P1234L2", 101);//
+		Part part3 = new Part("P1234L3", 102); //
+		Part part4 = new Part("P1234L4", 103); //
+		Part part5 = new Part("P9874L1", 104); //
+		Part part6 = new Part("P9874L2", 104); //
+		Part part7 = new Part("P9874L3", 104); //
+		Part part8 = new Part("P9874L4", 104); //
+		Part part9 = new Part("P1234B1", 105); //
+		Part part10 = new Part("P1234B2", 106);//
+		Part part11 = new Part("P9874B1", 107); //
+		Part part12 = new Part("P9874B2", 108); //
 		
 		ph1.addPart(part9);
 		ph1.addPart(part5);
@@ -55,7 +54,7 @@ public class Station2 implements Station2Interface {
 	}
 
 	@Override
-	public ArrayList<Package> getHalfPackages(int n) throws RemoteException {
+	public ArrayList<Package> getMixPackages(String shop, int n) throws RemoteException {
 		ArrayList<Package> ret = new ArrayList<>();
 		ret.add(ph1);
 		if (n == 2)
@@ -64,7 +63,7 @@ public class Station2 implements Station2Interface {
 	}
 
 	@Override
-	public ArrayList<Package> getPartPackages(String type, int n) throws RemoteException {
+	public ArrayList<Package> getPartPackages(String shop, char type, int n) throws RemoteException {
 		ArrayList<Package> ret = new ArrayList<>();
 		ret.add(pp1);
 		if (n == 2)
