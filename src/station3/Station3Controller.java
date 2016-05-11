@@ -15,6 +15,7 @@ import station2.Station2Interface;
 // rmi client to main server
 // coverter Model-Json
 public class Station3Controller {
+	
 	private static Station2Interface server;
 	private ObjectMapper json;
 
